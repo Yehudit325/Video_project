@@ -1,30 +1,34 @@
-class Controler {
+
+/**********************************************************
+ *                    Classes Declaration                 *
+ **********************************************************/
+// Descirbe the class in short details.
+// what is it for? what does it control?  etc..
+class Controller {
     constructor(video) {
         this.video = video;
     }
 
     playVid() {
-      this.video.play();
+        this.video.play();
     }
 
     pauseVid() {
-      this.video.pause();
+        this.video.pause();
     }
 
     toggle() {
         if (!this.video.paused) {
             this.pauseVid();
         }
-        else if (this.video.paused) {
+        else {
             this.playVid();
         }
     }
 }
 
-var player = new Controler(document.getElementById("theVideo"));
-
-document.getElementById("playPause").addEventListener("click", function() {player.toggle()});
-
+// Descirbe the class in short details.
+// what is it for?  etc..
 class Timer {
     constructor(video) {
         this.seconds = 0;
@@ -47,6 +51,18 @@ class Timer {
     }
 }
 
+/**********************************************************
+ *                 Variable Declaration                   *
+ **********************************************************/
+
+var player = new Controller(document.getElementById("theVideo"));
 var timer = new Timer(document.getElementById("theVideo"));
 
+/**********************************************************
+ *                     Event Listeners                    *
+ **********************************************************/
+
+ // purpose?
+document.getElementById("playPause").addEventListener("click", function() {player.toggle()});
+// purpose?
 timer.video.addEventListener("timeupdate", function(){timer.DisplayTime(document.getElementsByClassName("currentTime")[0])});
