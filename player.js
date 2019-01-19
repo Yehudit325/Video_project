@@ -1,30 +1,36 @@
-class Controler {
+/**********************************************************
+ *                   Classes Declarations                 *
+ **********************************************************/
+
+/* Class Controller
+ * The Controller is responsible for the play/pause functionalities.
+ */
+class Controller {
     constructor(video) {
         this.video = video;
     }
 
     playVid() {
-      this.video.play();
+        this.video.play();
     }
 
     pauseVid() {
-      this.video.pause();
+        this.video.pause();
     }
 
     toggle() {
         if (!this.video.paused) {
             this.pauseVid();
         }
-        else if (this.video.paused) {
+        else {
             this.playVid();
         }
     }
 }
 
-var player = new Controler(document.getElementById("theVideo"));
-
-document.getElementById("playPause").addEventListener("click", function() {player.toggle()});
-
+/* Class Timer
+ * The Timer is responsible for handiling the displayed time.
+ */
 class Timer {
     constructor(video) {
         this.seconds = 0;
@@ -47,6 +53,24 @@ class Timer {
     }
 }
 
-var timer = new Timer(document.getElementById("theVideo"));
+/**********************************************************
+ *                 Variable Declarations                  *
+ **********************************************************/
 
+const player = new Controller(document.getElementById("theVideo"));
+const timer = new Timer(document.getElementById("theVideo"));
+
+/**********************************************************
+ *                     Event Listeners                    *
+ **********************************************************/
+
+ /* playPause - click event listener
+  * Play/Pause event listener uses the player Controller to toggle
+  * between 'play' and 'pause' states.
+  */
+document.getElementById("playPause").addEventListener("click", function() {player.toggle()});
+
+/* timeupdate - event listener
+ * Time update event listener uses the Timer to display and set the timer.
+ */
 timer.video.addEventListener("timeupdate", function(){timer.DisplayTime(document.getElementsByClassName("currentTime")[0])});
