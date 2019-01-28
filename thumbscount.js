@@ -34,6 +34,7 @@ thumbsRef.on('value', function(snapshot) {
         // First call - initialize 'thumbs' object in database
         initializeThumbs();
     }
+    // updates global variables with current info from DB
     upCount = snapshot.val().upCount;
     downCount = snapshot.val().downCount;
 

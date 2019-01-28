@@ -26,21 +26,19 @@ const viewsRef = dbRef.ref("viewer")
  /* FireBase 'once' function
   * Read the 'viewer' data once from data base, receives a snapshot that
   * contains the data at the 'viewer' location in the database when called.
-  * The function updates the current view counts and displays it. 
+  * The function updates the current view counts and displays it.
   */
 viewsRef.once('value').then(function(snapshot) {
     if (!snapshot.exists()) {
         // First call - initialize 'viewer' object in database
         initializeViewer();
     }
-    else
-    {
-        handleViews(snapshot.val().numViews);
-    }
+    handleViews(snapshot.val().numViews);
 });
 
 function handleViews(curValue) {
-  let newValue = curValue + 1;
+    //recevies the current view count value fron the database
+  let newValue = curValue + 1; //increments view count
   renderDisplay(newValue);
   updateViewer(newValue);
 }
@@ -59,6 +57,4 @@ function initializeViewer() {
   viewsRef.set({
     numViews: 0
   });
-
-  handleViews(0);
 }

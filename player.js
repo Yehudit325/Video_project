@@ -39,11 +39,13 @@ class Timer {
     }
 
     setTime(time) {
+        //time is received in seconds and milliseconds
+        //this function converts the time received to secinds and minutes
         this.seconds = Math.floor(time%60);
         this.minutes = Math.floor(time/60);
     }
 
-    DisplayTime(display) {
+    displayTime(display) {
         this.setTime(this.video.currentTime);
         if (this.seconds >= 10)
             display.innerHTML = this.minutes + ":" + this.seconds;
@@ -73,4 +75,4 @@ document.getElementById("playPause").addEventListener("click", function() {playe
 /* timeupdate - event listener
  * Time update event listener uses the Timer to display and set the timer.
  */
-timer.video.addEventListener("timeupdate", function(){timer.DisplayTime(document.getElementsByClassName("currentTime")[0])});
+timer.video.addEventListener("timeupdate", function(){timer.displayTime(document.getElementsByClassName("currentTime")[0])});
